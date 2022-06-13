@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% set active_page = url_for('add_new') -%}
+{% block content %}
+    <div class="container text-center mt-5">
+        <div class="shadow p-3 mb-5 bg-body rounded">
+            <h1>Add A New Beer</h1>
+            <p>Please, share your opinion about the beer which you tasted last time with other users </p>
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.beer_name(size=32, placeholder="Beer Name", class="form-control") }}
+                    {% if form.beer_name.errors %}
+                        <ul class="errors">
+                            {% for error in form.beer_name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{ form.brewery_name(size=32, placeholder="Brewery Name", class="form-control") }}
+                    {% if form.brewery_name.errors %}
+                        <ul class="errors">
+                            {% for error in form.brewery_name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{form.beer_style(size=32, placeholder="Beer Style", class="form-control")}}
+                    {% if form.beer_style.errors %}
+                        <ul class="errors">
+                            {% for error in form.beer_style.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                </p>
+                <p>
+                    {{ form.beer_comment(rows=2, size=128, placeholder="Comment", class="form-control") }}
+                    {% if form.beer_comment.errors %}
+                        <ul class="errors">
+                            {% for error in form.beer_comment.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{ form.beer_rate.label }} : </br>
+                    <output 
+                        for="beer_rate" 
+                        id="selected-rate">
+
+                        {{ form.beer_rate.data }}
+
+                    </output> 
+                    <br>
+                    {{ form.beer_rate(min=1, max=5, oninput="outputUpdate(value)") }}
+                    {% if form.beer_rate.errors %}
+                    <ul class="errors">
+                        {% for error in form.beer_rate.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{ form.submit(class="btn btn-outline-dark") }}
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

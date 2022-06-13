@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Scripts -->
+    <script>
+      function outputUpdate(beer_rate) {
+
+          document.querySelector('#selected-rate').value = beer_rate;
+      }
+      </script>
+
+    <!-- To avoid favicon.ico error-->
+    <link rel="shortcut icon" href="#">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"> 
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+
+    <title>Rate A Beer Website</title>
+    
+    <style>
+      .hidden{
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="d-flex flex-column min-vh-100" style="background-color:#E6E6FA">
+  
+    <!-- Navbar -->
+
+    {% set navigation_bar = [
+      (url_for('index'), 'Home'),
+      (url_for('about'), 'About'),] -%}
+
+    {% if current_user.is_anonymous %}
+
+      {% set navigation_bar_user = [
+        (url_for('login'), 'Sign In')] -%}
+
+    {% else %}
+
+      {% set navigation_bar_user = [
+        (url_for('user', username=current_user.username), 'My Beer List'),
+        (url_for('add_new'), 'Add A New Beer'),
+        (url_for('logout'), 'Log Out')] -%}
+
+    {% endif %}
+
+    {% set active_page = active_page|default(url_for('index')) -%}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand mt-0.5" href="{{ url_for('index') }}">rateabeer.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% for href, caption in navigation_bar %}
+              <li class="nav-item">
+                <a {% if href == active_page %} class="nav-link active" aria-current="page" {% else %} class="nav-link" {% endif
+                %} href="{{ href|e }}">{{ caption|e }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="navbar-nav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% for href, caption in navigation_bar_user %}
+              <li class="nav-item">
+                  <a {% if href == active_page %} class="nav-link active" aria-current="page" {% else %} class="nav-link" {% endif
+                  %} href="{{ href|e }}">{{ caption|e }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      
+    </nav>
+
+    <!-- Flashed Messages -->
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{message}}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-4 pb-4 mt-auto">
+      <div class="container text-center text-md-left">
+        <div>
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/kuba.skowron.5" class="btn-floating btn-sm text-white" style="font-size: 46px;"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.linkedin.com/in/jakub-skowron-54b99217b" class="btn-floating btn-sm text-white" style="font-size: 46px;"><i class="fa-brands fa-linkedin"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/Jaqbek95" class="btn-floating btn-sm text-white" style="font-size: 46px;"><i class="fa-brands fa-github"></i></a>
+            </li>
+          </ul>
+        </div>
+      <div>
+          Copyright &copy; 2022 - rateabeer.com by Jakub Skowron. All rights Reserved
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+   
+  </body>
+</html>

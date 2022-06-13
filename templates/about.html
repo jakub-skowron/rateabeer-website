@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% set active_page = url_for('about') -%}
+{% block content %}
+<div class="container mt-5">
+    <div class="row g-3">
+        <div class="col-12 col-md-12 col-lg-8">
+            <div class="shadow p-4 mb-5 bg-body rounded">
+                <h1>About The Webpage</h1>
+                <p class="text-justify" id="description">
+                    This website allows you to collect and share your beer tasting feelings with other users. It's a kind of beer-geek's diary. The website is built with using python's framework - flask and some bootstrap 5. It's my first version of the website and I am going to add more content and functionalities from time to time. If you want to see more my projects check my github account. All my socials links you can find below.
+                </p>
+            </div>
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                <h2>Check my:</h2>
+                <div class="mt-4">
+                    <ul class="list-unstyled list-inline text-center">
+                        <li class="list-inline-item mx-5">
+                        <a href="https://www.facebook.com/kuba.skowron.5" class="btn-floating btn-lg text-dark" style="font-size: 92px;"><i class="fab fa-facebook"></i></a>
+                        <p class="text-center">Facebook</p>
+                        </li>
+                        <li class="list-inline-item mx-5">
+                        <a href="https://www.linkedin.com/in/jakub-skowron-54b99217b" class="btn-floating btn-lg text-dark" style="font-size: 92px;"><i class="fa-brands fa-linkedin"></i></a>
+                        <p class="text-center">LinkedIn</p>
+                        </li>
+                        <li class="list-inline-item mx-5">
+                        <a href="https://github.com/Jaqbek95" class="btn-floating btn-lg text-dark" style="font-size: 92px;"><i class="fa-brands fa-github"></i></a>
+                        <p class="text-center">Github</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-4">
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="text-center">
+                    <img src="/static/images/me.png" alt="Me" width="250" height="250" class="mb-3"> 
+                </div>
+                <h1>About Me</h1>
+                <p class="text-justify" id="description">
+                    I'm Jakub Skowron, currently quality fixtures designer in automotive industry, beginner in the web development and a big fan of video games, beer and brewing.
+                </p>
+                <h2>My expirience in coding</h2>
+                <p class="text-justify" id="description">
+                    My first expirience in codding I have had at highschool and after - more advanced - at university. I graduated from the AGH University Of Science and Technology in Cracow. My field was Mechanical Engineering. There I had basics of C, C++ and Python languages, which were really usefull to solve many technical issues at labs classes.
+                    After studies I have started my career associated with mechanical engineering. Currently I work as mechanical engineer and I design quality equipment for automotive industry.
+                    Some time ago during the design and documentation making process I figured out that I do many repetitive activities which can be automated. It has been good oportunity to come back to coding learning...
+                </p>
+                <h2>Hobby</h2>
+                    <h4>Beer and Brewing</h4>
+                    <p class="text-justify" id="description">
+                        As I wrote above in my free time I am a homebrewer and gamer (casue lack of free time, now more observer of gaming). 
+                        As a brewer I have on my account around 15 brewed beers and it's not my last word! The whole process is really exciting and relaxing each time. For me the best moment of home brewering it's a sound of opening bottle of your own brewed beer and shareing them with friends. 
+                    </p>
+                    <h4>Games</h4>
+                    <p class="text-justify" id="description">
+                        Games are my hobby since I remember. I like RPG games with good story or from time to time some turn-based games. I can't counting the hours spent with Sid Meier's Civilization V or XCOM 2 ;) 
+                    </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

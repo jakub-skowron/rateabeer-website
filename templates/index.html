@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if posts.items == [] %}
+    <div class="container text-center mt-5">
+        <div class="shadow p-3 mb-5 bg-body rounded">
+            <h1>No posts yet!</h1>
+            <p>Add first post on the website!
+            </br>
+            <a href="{{ url_for('add_new') }}">Click here</a> to add new post!
+            </p>
+        </div> 
+    </div>
+    {% endif %}
+    <div class="container mt-5">
+        <div class="row g-3">
+            {% for post in posts.items %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow p-3 mb-5 bg-body rounded">
+                        <p class="fw-bold lh-1">BEER NAME: <span class="fw-normal">{{ post.beer_name }}</span></p>
+                        <p class="fw-bold">BREWERY: <span class="fw-normal">{{ post.brewery_name }}</span></p>
+                        <p class="fw-bold">BEER STYLE: <span class="fw-normal">{{ post.beer_style }}</span></p>
+                        <p class="fw-bold">COMMENT:</p>
+                        <p class="lh-1">{{ post.beer_comment }}</p>
+                        <p class="fw-bold">RATE: <span class="fw-normal">{{ post.beer_rate }}</span></p>
+                        {% if post.edition != 'Unedited' %}
+                            <p class="fw-bold">POST DATE: <span class="fw-normal">{{ post.timestamp.strftime('%Y-%m-%d | %H:%M:%S')}}</span></p>
+                        {% else %}
+                            <p class="fw-bold">POST DATE: <span class="fw-normal">{{ post.timestamp.strftime('%Y-%m-%d | %H:%M:%S')}}</span></p>
+                        {% endif %} 
+                        <p class="fw-bold">USER: <span class="fw-normal">{{ post.author.username }}</span></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="text-center mb-5">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if page_num %}
+                {% if posts.page == page_num %}
+                    <a class="btn btn-secondary mb-4" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-secondary mb-4" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

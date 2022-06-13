@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container text-center mt-5">
+        <div class="shadow p-3 mb-5 bg-body rounded">
+            <h1>Update Your Beer Opinion</h1>
+            <p>Please, fill the fields of the post </p>
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.beer_name(size=32, placeholder="Beer Name", class="form-control", value=feature_to_update.beer_name) }}
+                    {% if form.beer_name.errors %}
+                        <ul class="errors">
+                            {% for error in form.beer_name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{ form.brewery_name(size=32, placeholder="Brewery Name", class="form-control", value=feature_to_update.brewery_name) }}
+                    {% if form.brewery_name.errors %}
+                        <ul class="errors">
+                            {% for error in form.brewery_name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{form.beer_style(size=32, placeholder="Beer Style", class="form-control", value=feature_to_update.beer_style)}}
+                    {% if form.beer_style.errors %}
+                        <ul class="errors">
+                            {% for error in form.beer_style.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                </p>
+                <p>
+                    <textarea id="id" name="beer_comment" class="form-control" rows=2 size=128 placeholder="Comment">{{ feature_to_update.beer_comment }}</textarea>
+                    {% if form.beer_comment.errors %}
+                        <ul class="errors">
+                            {% for error in form.beer_comment.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{ form.beer_rate.label }} : 
+                    <output for="beer_rate" id="selected-rate">{{ feature_to_update.beer_rate }}</output> <br>
+                    {{ form.beer_rate(min=1, max=5, value=feature_to_update.beer_rate, oninput="outputUpdate(value)") }}
+                    {% if form.beer_rate.errors %}
+                        <ul class="errors">
+                            {% for error in form.beer_rate.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+                <p>
+                    {{ form.submit(class="btn btn-outline-dark") }}
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
