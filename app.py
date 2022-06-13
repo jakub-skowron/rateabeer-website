@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///beer_website_DB.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pxmfttvrjxgvyx:1105d29793a2ce9d462ea5666bc8bf10d26cbd622c3e2661e7254cb6358b4452@ec2-34-231-221-151.compute-1.amazonaws.com:5432/dc1q57uqeehoee'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://rtfzteqqckdbzy:d5eb65b8dde9d9d51c3147673c9a19ef3b73133e147b0a063efadbf917baa066@ec2-54-157-16-196.compute-1.amazonaws.com:5432/d3vlahnej3qd5d'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'secret_key'
 
