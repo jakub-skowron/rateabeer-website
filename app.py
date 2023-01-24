@@ -14,7 +14,6 @@ login.login_view = 'login' # The name of the view to redirect to when the user n
 
 import routes
 #from models import Post
-db.create_all()
 
 if __name__ == '__main__':
     app.run()
